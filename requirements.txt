@@ -4,5 +4,4 @@ pip
 pylint
 pytest
 pytest-flask
-ez_setup
 
