@@ -11,7 +11,7 @@ jobs:
     - name: Setup Python environment
       uses: actions/setup-python@v4
     - name: Install requirements
-      run: pip install --quiet --requirement requirements.txt
+      run: pip install --requirement requirements.txt
     - name: Lint code
       run: |
         flake8 --ignore=E501,E231 *.py
