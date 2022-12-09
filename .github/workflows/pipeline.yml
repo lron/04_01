@@ -27,12 +27,12 @@ jobs:
     needs: [lint]
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v3
-    - name: Build and tag image
-      run: docker build -t "myimage/${{ env.APPLICATION_NAME }}:latest" .
+    # - uses: actions/checkout@v3
+    # - name: Build and tag image
+    #   run: docker build -t "myimage/${{ env.APPLICATION_NAME }}:latest" .
 
-    - name: Log in to Azure
-      uses: azure/login@v1
+    #- name: Log in to Azure
+    - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
