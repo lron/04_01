@@ -45,8 +45,8 @@ jobs:
 
     - name: Build and push docker image
       run: |
-        docker build . -t myimage/${{ env.APPLICATION_NAME }}:${{ github.sha }}
-        docker push myimage/${{ env.APPLICATION_NAME }}:${{ github.sha }}
+        docker build . -t ${{ secrets.LOGIN_SERVER }}/${{ env.APPLICATION_NAME }}:${{ github.sha }}
+        docker push ${{ secrets.LOGIN_SERVER }}/${{ env.APPLICATION_NAME }}:${{ github.sha }}
 
 #    - name: Push to GCP image registry
       #run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.APPLICATION_NAME }}:latest
