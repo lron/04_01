@@ -44,9 +44,9 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
     - run: |
-        docker build . -t lrontest.azurecr.io/demo:${{ github.sha }}
-        docker push lrontest.azurecr.io/demo:${{ github.sha }}
-        
+        docker build . -t myimage/${{ env.APPLICATION_NAME }}:${{ github.sha }}
+        docker push myimage/${{ env.APPLICATION_NAME }}:${{ github.sha }}
+
 #    - name: Push to GCP image registry
       #run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.APPLICATION_NAME }}:latest
 #      run: gcloud docker -- push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.APPLICATION_NAME }}:latest
