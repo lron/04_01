@@ -39,11 +39,12 @@ jobs:
     - name: Log in to Azure container registry 
       uses: azure/docker-login@v1
       with:
-        login-server: lrontest.azurecr.io
+        login-server: ${{ secrets.LOGIN_SERVER }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - run: |
+    - name: Build and push docker image
+      run: |
         docker build . -t myimage/${{ env.APPLICATION_NAME }}:${{ github.sha }}
         docker push myimage/${{ env.APPLICATION_NAME }}:${{ github.sha }}
 
