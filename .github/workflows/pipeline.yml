@@ -31,12 +31,22 @@ jobs:
     # - name: Build and tag image
     #   run: docker build -t "myimage/${{ env.APPLICATION_NAME }}:latest" .
 
-    - name: Log in to Azure
-      uses: azure/login@v1
+#    - name: Log in to Azure
+#      uses: azure/login@v1
+#      with:
+#        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Log in to Azure container registry 
+      uses: azure/docker-login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
-    
+        login-server: lrontest.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
+    - run: |
+        docker build . -t lrontest.azurecr.io/demo:${{ github.sha }}
+        docker push lrontest.azurecr.io/demo:${{ github.sha }}
+        
 #    - name: Push to GCP image registry
       #run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.APPLICATION_NAME }}:latest
 #      run: gcloud docker -- push gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.APPLICATION_NAME }}:latest
